@@ -1,5 +1,18 @@
 from django import forms
+from .models import Event ,Booking
 from django.contrib.auth.models import User
+ 
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        exclude = ['organizer',]
+        
+
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['number_of_ticket',]
+
 
 class UserSignup(forms.ModelForm):
     class Meta:
@@ -9,6 +22,7 @@ class UserSignup(forms.ModelForm):
         widgets={
         'password': forms.PasswordInput(),
         }
+
 
 
 class UserLogin(forms.Form):

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <!-- Navigation -->
+
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Blog Home Two
+      <small>Subheading</small>
+    </h1>
+
+    <ol class="bar-datail">
+      <li class="breadcrumb-item">
+
+     <a href="{% url  'home' %}"> <button class="btn-hover color-7"> Home </button> </a>
+
+      <a href="{% url  'event-list' %}"> <button class="btn-hover color-7"> List </button></a>
+    
+      <a href="{% url  'event-create' %}"> <button class="btn-hover color-7">Create Event</button> </a>
+
+      <a href="{% url  'recently-event' %}"> <button class="btn-hover color-7"> Event History</button> </a>
+    </ol>
+
+    <!-- Blog Post -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <a href="#">
+              <img class="img-fluid rounded" src="{{ event.img.url}}" alt="">
+            </a>
+          </div>
+           
+      </div>
+       
+    </div>
+
+    <!-- Blog Post -->
+    {% for event in events %}
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <a href="#">
+              <img class="img-fluid rounded" src="{{ event.img.url}}" alt="">
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <h2 class="card-title">{{event.title}}</h2>
+            <p class="card-text">{{event.description}}</p>
+              <a   href="{{ event.get_absolute_url }}" > <button class="btn-hover color-7" href="{{ event.get_absolute_url }}">More Info</button> </a>
+
+
+           </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+         {{event.date}}
+        <a href="#"> Location: {{event.location}}</a>
+      </div>
+    </div>
+      {% endfor %}
+
+  
+
+    <!-- Blog Post -->
+   
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4">
+      <li class="page-item">
+        <a class="page-link" href="#">&larr; Older</a>
+      </li>
+      <li class="page-item disabled">
+        <a class="page-link" href="#">
+
+ 
+         &rarr;</a>
+      </li>
+    </ul>
+
+  </div>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+
+{% endblock content %}

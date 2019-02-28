@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <header class="masthead text-center text-white">
+  <div class="masthead-content">
+    <div class="container">
+<div class="row">
+
+	{% for event in events %}
+		<div class="col-sm-4">
+			<div class="xx" href="{{ event.get_absolute_url }}">
+				<div class="img-box" >
+
+				<img    src="{{ event.img.url}}" class="card-img" alt="..."> 
+					<h5 class="list-title" >Title: {{event.title}}</h5>
+					<p class="list-date">date: {{event.date}}</p>
+					<div class="buttons">
+					   <a   href="{{ event.get_absolute_url }}" > <button class="btn-hover color-7" href="{{ event.get_absolute_url }}">More Info</button> </a>
+ 
+    
+  
+</div>
+
+				 
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+</div> <!-- classOfmasthead -->
+</div> <!-- container -->
+</header>
+
+{% endblock content %}

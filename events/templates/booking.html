@@ -1,0 +1,25 @@
+{% extends "base.html" %}	
+{% load crispy_forms_tags %}
+
+ {% block header %}Booking{% endblock header %}
+
+ {% block content %} 
+<br>
+<br>
+	<form action="{% url 'booking' event.id %}" method="POST" enctype="multipart/form-data">
+
+
+		{% csrf_token %}
+		{{ form|crispy }}
+
+		
+		<input class="btn-hover color-10" type="submit" value="Book" ">
+
+		     
+
+	</form>
+		 
+
+{% endblock content %}
+
+ 

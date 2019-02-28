@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+ 
+{% block content %}
+ 
+ <br>
+ <br>
+ <br>
+ <br>
+		<div class="create-form"> 
+ 	
+	<form action="{% url 'event-update' event.id %}" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{form | crispy}}
+	
+
+		<input type="submit"  class="btn-hover color-6"> 
+		 <br> <br> <br>
+	</form>
+ 
+
+	</div>	<!-- create-form -->
+	
+
+{% endblock content %}

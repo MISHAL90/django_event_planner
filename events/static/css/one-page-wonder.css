@@ -1,3 +1,17 @@
+
+ 
+
+.cont-box{
+  zborder: solid;
+  padding: 10px;
+}
+
+
+
+
+
+
+
 body {
   font-family: 'Lato';
 }
@@ -152,3 +166,6 @@ header.masthead .bg-circle-4 {
 .btn-secondary:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
 }
+
+
+

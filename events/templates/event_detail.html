@@ -1,0 +1,132 @@
+ 
+{% extends "base.html" %}	
+
+ {% block header %}  Detail {% endblock header %}
+
+ {% block content %} 
+
+
+
+
+		 <!-- Page Content -->
+     <div class="col-xs-12">
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Portfolio Item
+      <small> </small>
+    </h1>
+ 
+
+    <ol class="bar-datail">
+      <li class="breadcrumb-item">
+
+     <a href="{% url  'home' %}"> <button class="btn-hover color-7"> Home </button> </a>
+
+      <a href="{% url  'event-list' %}"> <button class="btn-hover color-7"> List </button></a>
+    
+      <a href="{% url  'event-create' %}"> <button class="btn-hover color-7">Create Event</button> </a>
+
+      <a href="{% url  'recently-event' %}"> <button class="btn-hover color-7"> Event History</button> </a>
+    </ol>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+ 
+      <div class="col-md-8">
+        <div class="img-detail">
+        <img class="img-detail" src="{{ event.img.url}}" alt="">
+      </div>
+    </div>
+
+      <div class="col-md-4">
+         
+        <h3 class="change_title_color">{{event.title}}</h3>
+        <p class="description">{{event.description}}</p>
+        <h3 class="my-3"> Details</h3>
+        <ul>
+         
+          <li> <h7 class="location"> Location: {{event.location}} </h7></li>
+         
+          <li> <h7 class="location"> {{event.date}}</li> </h7>
+          <br>
+          <br>
+
+        {% if event.get_remain_ticket > 0 %}
+		    <a href="{% url 'booking' event.id %}" > <button class="btn-hover color-10">BOOK</button> </a>
+
+
+	     {% else %}
+<!--         <button type="button" class="btn btn-primary">FullBooked</button>
+ -->             
+                <button class="btn-hover color-3">FULL BOOKED</button>
+              {% endif %}
+                
+      {% if request.user == event.organizer   %}   
+ 
+  			<a href="{% url  'event-update'  event.id   %}"> <button class="btn-hover color-6">UPDATE</button> </a>
+
+  			<a href="{% url  'event-delete'  event.id   %}"> <button class="btn-hover color-2">DELETE</button></a>
+
+ 
+
+
+</div>
+
+
+      </div>
+
+    </div>
+    <!-- /.row --> 
+        </div> <!-- widith of class -->
+
+    <!-- Related Projects Row -->
+ 
+ 
+ <br>
+ <br>
+
+<table class="table table-dark">
+  <thead>
+       <h3 class="my-8">Books Info </h3>
+    <tr>
+      <th scope="col">#</th>
+      <th>User name </th>
+      <th>Booked Tickets</th>
+
+      <th>Avaliable Tickets</th>
+      <th>Capcity</th>
+
+    </tr>
+  </thead>
+  <tbody>
+        
+            {% for tickets in ticket %} 
+    <tr>
+      <th scope="row">1</th>
+    <td>{{tickets.name}}</td> 
+    <td>{{tickets.number_of_ticket}}</td>
+
+          {% if event.get_remain_ticket < 0 %} 
+    <td>Full booked</td>
+           {% else %}
+    <td>{{event.get_remain_ticket}}</td>
+    {% endif %}
+
+    <td>{{tickets.event.capacity}}</td>
+   
+
+    </tr>   {% endfor %} 
+      {% endif %}
+
+  </tbody>
+</table>
+   
+
+      <br>
+      <br>
+{% endblock content %}
+
+
+
+

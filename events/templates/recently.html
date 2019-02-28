@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<br>
+<br>
+<br>
+<br>
+    {% for event in recently_event %}
+
+ 
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <a href="#">
+                  <img class="img-fluid rounded" src="{{ event.event.img.url}}" alt="">
+                </a>
+              </div>
+              <div class="col-lg-6">
+                <h2 class="card-title">Title: {{event.event.title}}</h2>
+                <p class="card-text">date: {{event.event.date}}</p>
+                
+                  <a   href="{{ event.event.get_absolute_url }}" > <button class="btn-hover color-7" href="{{  event.event.event.get_absolute_url }}">More Info</button> </a>
+
+
+               </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+             {{event.event.date}}
+            <a href=""> Location: {{event.event.location}} </a>
+          </div>
+        </div>
+        {% endfor %}
+
+
+{% endblock content %}
